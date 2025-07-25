@@ -13,9 +13,15 @@ public class StudentController {
     @Autowired
     private IStudentService studentService;
     @GetMapping
-    public String showStudentList(Model model) {
+    public String showStudentList(
+            @RequestParam(value = "page", defaultValue = "0") int page,
+            @RequestParam(value = "size", defaultValue = "5") int size,
+            Model model) {
         // Trả về tên view để hiển thị danh sách sinh viên
-        model.addAttribute("students", studentService.getAllStudents());
+        model.addAttribute("students", studentService.getAllStudents(page, size));
+        model.addAttribute("totalPage", studentService.totalPage(size));
+        model.addAttribute("currentPage", page);
+        model.addAttribute("size", size);
         return "student/list"; // Giả sử bạn có một view students/list.jsp
     }
 

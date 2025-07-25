@@ -2,7 +2,7 @@ package ra.orm.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import ra.orm.dao.StudentDaoImpl;
+import ra.orm.repository.StudentRepositoryImpl;
 import ra.orm.entity.Student;
 
 import java.time.LocalDate;
@@ -11,13 +11,17 @@ import java.util.List;
 @Service
 public class StudentServiceImpl implements IStudentService {
     @Autowired
-    private StudentDaoImpl studentDao;
+    private StudentRepositoryImpl studentDao;
 
     @Override
-    public List<Student> getAllStudents() {
-        return studentDao.getAllStudent();
+    public List<Student> getAllStudents(int page, int size) {
+        return studentDao.getAllStudent(page,size);
     }
 
+    @Override
+    public int totalPage(int size) {
+        return studentDao.totalPage(size);
+    }
 
     @Override
     public void addStudent(Student student) {

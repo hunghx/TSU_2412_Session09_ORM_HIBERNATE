@@ -14,6 +14,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Danh sách Sinh viên</title>
     <link rel="stylesheet" href="/css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+
 </head>
 <body>
 <div class="container">
@@ -74,6 +76,20 @@
 
                 </tbody>
             </table>
+            <nav aria-label="...">
+                <ul class="pagination">
+                    <li class="page-item"><a href="#" class="page-link">Previous</a></li>
+<%--                    <li class="page-item"><a class="page-link" href="#">1</a></li>--%>
+                    <c:forEach begin="1" end="${totalPage}" var="p" varStatus="loop" step="1">
+                        <li class="page-item ${p==currentPage+1 ? 'active' : ''}">
+                            <a class="page-link" href="?page=${p+-1}&size=${size}" aria-current="page">${p}</a>
+                        </li>
+                    </c:forEach>
+
+<%--                    <li class="page-item"><a class="page-link" href="#">3</a></li>--%>
+                    <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                </ul>
+            </nav>
         </div>
     </main>
 </div>
@@ -86,5 +102,7 @@
         }
     }
 </script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
+
 </body>
 </html>

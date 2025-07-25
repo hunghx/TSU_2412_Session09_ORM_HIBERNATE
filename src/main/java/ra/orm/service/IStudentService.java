@@ -5,7 +5,8 @@ import ra.orm.entity.Student;
 import java.util.List;
 
 public interface IStudentService {
-    List<Student> getAllStudents();
+    List<Student> getAllStudents(int page, int size);
+    int totalPage(int size); // Phương thức để lấy tổng số trang dựa trên kích thước trang
     void initData(); // Phương thức để khởi tạo dữ liệu mẫu
     void addStudent(Student student); // Phương thức để thêm sinh viên mới
     void updateStudent(Student student); // Phương thức để cập nhật thông tin sinh viên

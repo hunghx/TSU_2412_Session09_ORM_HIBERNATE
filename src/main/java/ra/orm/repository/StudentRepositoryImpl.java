@@ -1,4 +1,4 @@
-package ra.orm.dao;
+package ra.orm.repository;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -8,22 +8,31 @@ import org.springframework.stereotype.Repository;
 import ra.orm.entity.Student;
 
 import javax.persistence.TypedQuery;
-import java.sql.SQLException;
 import java.util.List;
 
 @Repository
-public class StudentDaoImpl {
+public class StudentRepositoryImpl {
     @Autowired
     private SessionFactory sessionFactory;
   // nhóm  chúc năng truy xuất dữ liệu từ cơ sở dữ liệu
     //  HQL
     // lấy về danh sach sv
-    public List<Student> getAllStudent(){
+    public List<Student> getAllStudent(int page, int size){
         Session session = sessionFactory.openSession();
         TypedQuery<Student> query = session.createQuery("SELECT S FROM Student S",Student.class);
-        List<Student> studentList = query.getResultList();
+        List<Student> studentList = query
+                .setFirstResult(page*size) // offset
+                .setMaxResults(size) // limit
+                .getResultList();
         session.close();
         return studentList;
+    }
+   public int totalPage(int size) {
+        Session session = sessionFactory.openSession();
+        TypedQuery<Integer> query = session.createQuery("SELECT ceiling(COUNT(S)/:size) FROM Student S", Integer.class);
+        int count = query.setParameter("size", Long.valueOf(size)).getSingleResult();
+        session.close();
+        return count; // Tính tổng số trang
     }
     public Student getStudentById(Integer id){
         Session session = sessionFactory.openSession();
