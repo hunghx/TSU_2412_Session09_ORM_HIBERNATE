@@ -3,7 +3,6 @@ package ra.orm.config;
 import org.springframework.context.annotation.Bean;
 
 import org.hibernate.SessionFactory;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
@@ -12,7 +11,8 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.sql.DataSource;
 import java.util.Properties;
-
+@Configuration
+@EnableTransactionManagement // Bật tính năng quản lý giao dịch trong Spring
 public class HibernateConfig {
     @Bean
     public SessionFactory sessionFactory() {

@@ -27,6 +27,6 @@ public class WebConfig implements WebMvcConfigurer {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/css/**") // khi chỉ định 1 đường dẫn /css/abc.css
-                .addResourceLocations("classpath:/css/"); // khơp với resouces/css/abc.css
+                .addResourceLocations("/css/"); // khơp với resouces/css/abc.css
     }
 }
