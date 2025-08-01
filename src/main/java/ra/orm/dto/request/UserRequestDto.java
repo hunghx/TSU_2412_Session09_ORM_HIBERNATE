@@ -3,6 +3,7 @@ package ra.orm.dto.request;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.web.multipart.MultipartFile;
 import ra.orm.validator.NotName;
 
 import javax.validation.constraints.Email;
@@ -26,4 +27,6 @@ public class UserRequestDto {
     @NotBlank(message = "Số điện thoại không được để trống")
     @Pattern(regexp = "^\\d{10,11}$", message = "Số điện thoại không hợp lệ")
     private String phoneNumber;
+    @NotNull(message = "Ảnh không được để trống")
+    private MultipartFile avatar;
 }

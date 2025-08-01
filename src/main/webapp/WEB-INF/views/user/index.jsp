@@ -14,7 +14,7 @@
 <body>
 
 <%--Spring form--%>
-<form:form modelAttribute="user" action="/add-user" method="post">
+<form:form modelAttribute="user" action="/add-user" method="post" enctype="multipart/form-data">
     <%--    thng tin của user  --%>
     <form:label path="fullName">Tên người dùng :</form:label>
     <form:input path="fullName"/>
@@ -31,6 +31,9 @@
     <form:label path="phoneNumber" >Số điện thoại :</form:label>
     <form:input path="phoneNumber" />
     <form:errors path="phoneNumber" cssStyle="color: red" element="p"/>
+    <br/>
+    <form:label path="avatar"> Avatar</form:label>
+    <form:input type="file" path="avatar" />
     <br/>
     <button type="submit">Gửi</button>
 </form:form>

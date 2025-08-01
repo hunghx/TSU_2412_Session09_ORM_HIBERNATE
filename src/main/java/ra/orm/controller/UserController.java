@@ -9,12 +9,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import ra.orm.dto.request.UserRequestDto;
+import ra.orm.dto.response.UserResponseDto;
+import ra.orm.service.IUserService;
 import ra.orm.validator.UserValidator;
 
 import javax.validation.Valid;
 
 @Controller
 public class UserController {
+    @Autowired
+    private IUserService userService;
     @Autowired
     private UserValidator userValidator;
     @GetMapping("/show-form")
@@ -29,7 +33,8 @@ public class UserController {
             // có lỗi- quay lại form cũ
             return "user/index";
         }
-        model.addAttribute("user", request);
+        UserResponseDto dto = userService.addUser(request);
+        model.addAttribute("dto", dto);
         return "user/infor";
     }
 }

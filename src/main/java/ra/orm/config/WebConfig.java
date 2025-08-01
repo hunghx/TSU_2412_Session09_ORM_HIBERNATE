@@ -4,6 +4,7 @@ package ra.orm.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
@@ -28,5 +29,13 @@ public class WebConfig implements WebMvcConfigurer {
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/css/**") // khi chỉ định 1 đường dẫn /css/abc.css
                 .addResourceLocations("/css/"); // khơp với resouces/css/abc.css
+    }
+
+    @Bean
+    public CommonsMultipartResolver multipartResolver(){
+        CommonsMultipartResolver resolver = new CommonsMultipartResolver();
+        resolver.setMaxUploadSize(1024 * 1024 * 10); // giới hạn kích thước tệp tải lên là 10MB
+        resolver.setMaxUploadSizePerFile(1024 * 1024 * 5); // giới hạn kích thước mỗi tệp tải lên là 5MB
+        return resolver;
     }
 }

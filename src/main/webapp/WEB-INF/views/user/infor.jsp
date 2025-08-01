@@ -12,10 +12,11 @@
 </head>
 <body>
 <ul>
-    <li>Tên : ${user.fullName} </li>
-    <li>Ngày sinh : ${user.dateOfBirth}</li>
-    <li>Email :${user.email} </li>
-    <li>Số điện thoai : ${user.phoneNumber}</li>
+    <li>Tên : ${dto.fullName} </li>
+    <li>Ngày sinh : ${dto.dateOfBirth}</li>
+    <li>Email :${dto.email} </li>
+    <li>Số điện thoai : ${dto.phoneNumber}</li>
+    <img src="${dto.avatarUrl}" alt=""/>
 </ul>
 </body>
 </html>
