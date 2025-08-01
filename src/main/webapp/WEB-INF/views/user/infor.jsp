@@ -7,10 +7,15 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
-  <head>
-    <title>$Title$</title>
-  </head>
-  <body>
-  $END$
-  </body>
+<head>
+    <title>Title</title>
+</head>
+<body>
+<ul>
+    <li>Tên : ${user.fullName} </li>
+    <li>Ngày sinh : ${user.dateOfBirth}</li>
+    <li>Email :${user.email} </li>
+    <li>Số điện thoai : ${user.phoneNumber}</li>
+</ul>
+</body>
 </html>
